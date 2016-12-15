@@ -1,4 +1,4 @@
-import requests
+import urllib
 from bs4 import BeautifulSoup
 
 
@@ -6,7 +6,9 @@ def trade_spider(max_pages):
     page = 1
     while page <= max_pages:
         url = "https://buckysroom.org/trade/search.php?page=" + str(page)
-        source_code = requests.get(url)
+        req = urllib.request(url)
+        handler = urllib.urlopen(req)
+
         # just get the code, no headers or anything
         plain_text = source_code.text
         # BeautifulSoup objects can be sorted through easy
