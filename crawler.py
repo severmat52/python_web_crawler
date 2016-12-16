@@ -1,11 +1,11 @@
-import urllib
-from bs4 import BeautifulSoup
+from urllib import urlopen
+from BeautifulSoup import BeautifulSoup
 
 
 def trade_spider(max_pages):
     page = 1
     while page <= max_pages:
-        url = "https://buckysroom.org/trade/search.php?page=" + str(page)
+        webpage = urlopen()"" + str(page)).read()
         req = urllib.request(url)
         handler = urllib.urlopen(req)
 
@@ -14,7 +14,7 @@ def trade_spider(max_pages):
         # BeautifulSoup objects can be sorted through easy
         soup = BeautifulSoup(plain_text)
         for link in soup.findAll('a', {'class': 'item-name'}):
-            href = "https://buckysroom.org" + link.get('href')
+            href = "" + link.get('href')
             title = link.string  # just the text, not the HTML
             print(href)
             print(title)
